@@ -1,23 +1,18 @@
 <h2>My Heroes</h2>
+
 <ul class="heroes">
-    <!-- To have access to each individual hero and list them all, add an *ngFor to the <li> to iterate through the list of heroes. The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list. The syntax in this example is as follows:
+<!-- To have access to each individual hero and list them all, add an *ngFor to the <li> to iterate through the list of heroes. The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list. The syntax in this example is as follows:
 
 <li> is the host element.
 heroes holds the mock heroes list from the HeroesComponent class, the mock heroes list.
-hero holds the current hero object for each iteration through the list. Add click event binding. -->
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
+hero holds the current hero object for each iteration through the list. Add click event binding. Angular's class binding can add and remove a CSS class conditionally. Add [class.some-css-class]="some-condition" to the element you want to style. -->
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero" 
+    (click)="onSelect(hero)" >
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
   </li>
 </ul>
 
-<!-- To click on a hero on the list and reveal details about that hero, you need a section for the details to render in the template. -->
-<div *ngIf="selectedHero">
-
-  <h2>{{selectedHero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedHero.id}}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
-
-</div>
+<!-- The HeroDetailComponent selector is 'app-hero-detail'. Add an <app-hero-detail> element near the bottom of the HeroesComponent template, where the hero detail view used to be Bind the HeroesComponent.selectedHero to the element's hero property like this. [hero]="selectedHero" is an Angular one way data property binding from the selectedHero property of the HeroesComponent to the hero property of the target element, which maps to the hero property of the HeroDetailComponent. Now when the user clicks a hero in the list, the selectedHero changes. When the selectedHero changes, the property binding updates hero and the HeroDetailComponent displays the new hero.-->
+    
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
