@@ -19,9 +19,11 @@ The @Injectable() decorator accepts a metadata object for the service, the same 
 */
 
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
-import { Observable, of } from 'rxjs';
+import { MessageService } from './message.service';
 
 
 /* You must make the HeroService available to the dependency injection system before Angular can inject it into the HeroesComponent by registering a provider. A provider is something that can create or deliver a service; in this case, it instantiates the HeroService class to provide the service.
@@ -42,12 +44,14 @@ When you provide the service at the root level, Angular creates a single, shared
 
 export class HeroService {
 
-  constructor() { }
+  /* Modify the constructor with a parameter that declares a private messageService property. Angular will inject the singleton MessageService into that property when it creates the HeroService. This is a typical "service-in-service" scenario: you inject the MessageService into the HeroService which is injected into the HeroesComponent. */
+  constructor(private messageService: MessageService) { }
 
-  /* Add a getHeroes method to return the mock heroes. of(HEROES) returns an Observable<Hero[]> that emits a single value, the array of mock heroes. */
+  /* Add a getHeroes method to return the mock heroes. of(HEROES) returns an Observable<Hero[]> that emits a single value, the array of mock heroes. Modify the getHeroes() method to send a message when the heroes are fetched. */
   getHeroes(): Observable<Hero[]> {
-  const heroes = of(HEROES);
-  return heroes;
-}
+    const heroes = of(HEROES);
+    this.messageService.add('HeroService: fetched heroes');
+    return heroes;
+  }
 
 }
