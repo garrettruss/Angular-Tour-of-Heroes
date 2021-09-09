@@ -1,6 +1,7 @@
 <h1>{{title}}</h1>
 <!-- A routerLink attribute is set to "/heroes", the string that the router matches to the route to HeroesComponent. The routerLink is the selector for the RouterLink directive that turns user clicks into router navigations. It's another of the public directives in the RouterModule.-->
 <nav>
+  <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/heroes">Heroes</a>
 </nav>
 <router-outlet></router-outlet>
@@ -47,4 +48,14 @@ You used RxJS of() to return an observable of mock heroes (Observable<Hero[]>).
 The component's ngOnInit lifecycle hook calls the HeroService method, not the constructor.
 You created a MessageService for loosely-coupled communication between classes.
 The HeroService injected into a component is created with another injected service, MessageService.
+
+pt6. 
+You added the Angular router to navigate among different components.
+You turned the AppComponent into a navigation shell with <a> links and a <router-outlet>.
+You configured the router in an AppRoutingModule
+You defined routes, a redirect route, and a parameterized route.
+You used the routerLink directive in anchor elements.
+You refactored a tightly-coupled master/detail view into a routed detail view.
+You used router link parameters to navigate to the detail view of a user-selected hero.
+You shared the HeroService among multiple components.
 -->
