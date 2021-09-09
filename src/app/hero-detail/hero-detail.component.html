@@ -1,5 +1,3 @@
-<!-- To click on a hero on the list and reveal details about that hero, you need a section for the details to render in the template. ngIf = A structural directive that conditionally includes a template based on the value of an expression coerced to Boolean. When hero is undefined, the ngIf removes the hero detail from the DOM. There are no hero bindings to consider. When the user picks a hero, hero has a value and ngIf puts the hero detail into the DOM. -->
-
 <div *ngIf="hero">
   <h2>{{hero.name | uppercase}} Details</h2>
   <div><span>id: </span>{{hero.id}}</div>
@@ -8,4 +6,5 @@
     <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/>
   </div>
   <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
 </div>

@@ -1,12 +1,9 @@
 <h2>Top Heroes</h2>
 <div class="heroes-menu">
-    <!-- 
-        Now that the router has a route to HeroDetailComponent, fix the dashboard hero links to navigate using the parameterized dashboard route.
-        You're using Angular interpolation binding within the *ngFor repeater to insert the current iteration's hero.id into each routerLink.
-        The *ngFor repeater creates as many links as are in the component's heroes array.
-    -->
   <a *ngFor="let hero of heroes"
-    routerLink="/detail/{{hero.id}}">
-    {{hero.name}}
+      routerLink="/detail/{{hero.id}}">
+      {{hero.name}}
   </a>
 </div>
+
+<app-hero-search></app-hero-search>
